@@ -1,26 +1,109 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <header>
+    <h1>Currency monitor</h1>
+  </header>
+  <div class="add-block">
+    <AddCurrency :currencies="prices" @add-currency="add" :warning="warning" @clear-warning="clearWarning"/>
+  </div>
+  <div class="container">
+    <div class="currency-list">
+      <CurrencyItem v-for="item of items" :key="item['Cur_ID']" :item="item" @delete-item="deleteItem"/>
+    </div>
+  </div>
+  <LoaderItem :loading="loading"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import {fetchData} from "@/api";
+import AddCurrency from "@/components/AddCurrency";
+import LoaderItem from "@/components/LoaderItem";
+import CurrencyItem from "@/components/CurrencyItem";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    CurrencyItem,
+    LoaderItem,
+    AddCurrency
+  },
+  data() {
+    return {
+      prices: [],
+      loading: true,
+      items: [],
+      warning: false,
+      intervalID: 0
+    }
+  },
+  async created() {
+    this.prices = await fetchData()
+    this.loading = false
+    this.intervalID = setInterval(async () => {
+      this.prices = await fetchData()
+      this.items = this.items.map(i => this.prices.find(p => p['Cur_ID'] === i['Cur_ID']))
+    }, 300000)
+  },
+  beforeUnmount() {
+    clearInterval(this.intervalID)
+  },
+  mounted() {
+    this.items = JSON.parse(localStorage.getItem('currencies')) || []
+  },
+  methods: {
+    add(value) {
+      if (this.items.find(item => item['Cur_ID'] === value)) {
+        this.warning = true
+        return
+      }
+      this.items.push(this.prices.find(item => item['Cur_ID'] === value))
+      localStorage.setItem('currencies', JSON.stringify(this.items))
+    },
+    deleteItem(item) {
+      this.items = this.items.filter(i => i !== item)
+    },
+    clearWarning() {
+      this.warning = false
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+.container {
+  padding: 30px;
+}
+
+.add-block {
+  display: flex;
+  justify-content: center;
+  -webkit-box-shadow: 0px 12px 32px 16px rgba(34, 60, 80, 0.05);
+  -moz-box-shadow: 0px 12px 32px 16px rgba(34, 60, 80, 0.05);
+  box-shadow: 0px 12px 32px 16px rgba(34, 60, 80, 0.05);
+  background-color: rgba(34, 60, 80, 0.05);
+  padding-top: 20px;
+}
+
+header {
+  padding: 0 20px;
+  background-color: rgba(34, 60, 80, 0.05);
+  border-bottom: rgba(34, 60, 80, 0.05) 1px solid;
+  justify-content: center;
+  display: flex;
+}
+
+.currency-list {
+  margin: 50px -5px 0 -5px;
+}
+
+.currency-list:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 726px) {
+  .container {
+    padding: 15px;
+  }
 }
 </style>
