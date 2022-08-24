@@ -45,7 +45,7 @@ export default {
   width: 33%;
 }
 
-@media screen and (max-width: 726px) {
+@media screen and (max-width: 760px) {
   .card-container {
     width: 50%;
     display: block;
@@ -53,7 +53,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 490px) {
   .card-container {
     width: 100%;
     display: block;

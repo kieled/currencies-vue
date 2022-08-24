@@ -10,7 +10,7 @@
         @change="addCurrency"
         @click="$emit('clear-warning')"
     ></a-select>
-    <div v-if="warning">Валюта уже добавлена!</div>
+    <div v-if="warning" class="warning-message">Валюта уже добавлена!</div>
   </section>
 </template>
 
@@ -75,6 +75,10 @@ export default {
   .form {
     width: 95%;
   }
+}
+.warning-message {
+  color: red;
+  font-weight: bold;
 }
 </style>
 

@@ -101,9 +101,16 @@ header {
   clear: both;
 }
 
-@media screen and (max-width: 726px) {
+@media screen and (max-width: 760px) {
   .container {
     padding: 15px;
   }
 }
+
+@media screen and (min-width: 1366px) {
+  .container {
+    padding: 0 10%;
+  }
+}
+
 </style>
