@@ -1,12 +1,12 @@
 <template>
-  <div class="card-container">
-    <a-card :title="name" class="card">
-      <template #extra><close-outlined @click="$emit('delete-item', item)" /></template>
-      <div class="card__price">
-        {{ item['Cur_OfficialRate'] }} BYN
-      </div>
-    </a-card>
-  </div>
+  <a-card :title="name" class="card">
+    <template #extra>
+      <close-outlined @click="$emit('delete-item', item)"/>
+    </template>
+    <div class="card__price">
+      {{ item['Cur_OfficialRate'] }} BYN
+    </div>
+  </a-card>
 </template>
 
 <script>
@@ -34,35 +34,31 @@ export default {
 
 <style scoped lang="scss">
 .card {
-  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.11);
-  -moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.11);
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.11);
+  -webkit-box-shadow: 0 0 .5rem 0 rgba(0, 0, 0, 0.11);
+  -moz-box-shadow: 0 0 .5rem 0 rgba(0, 0, 0, 0.11);
+  box-shadow: 0 0 .5rem 0 rgba(0, 0, 0, 0.11);
   text-align: center;
-}
-.card-container {
-  padding: 10px;
-  float: left;
-  width: 33%;
+  width: 32%;
 }
 
 @media screen and (max-width: 760px) {
-  .card-container {
-    width: 50%;
+  .card {
+    width: 49%;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
 }
 
-@media screen and (max-width: 490px) {
-  .card-container {
-    width: 100%;
+@media screen and (max-width: 530px) {
+  .card {
+    width: 98%;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
 }
 
 .card__price {
-  font-size: 30px;
+  font-size: 3rem;
   font-weight: 600;
 }
 </style>

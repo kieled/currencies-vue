@@ -36,7 +36,7 @@ export default {
 }
 
 .loader__icon {
-  font-size: 100px;
+  font-size: 10rem;
   height: max-content;
 }
 </style>

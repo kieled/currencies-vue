@@ -71,46 +71,42 @@ export default {
 
 <style lang="scss">
 .container {
-  padding: 30px;
+  padding: 3rem;
 }
 
 .add-block {
   display: flex;
   justify-content: center;
-  -webkit-box-shadow: 0px 12px 32px 16px rgba(34, 60, 80, 0.05);
-  -moz-box-shadow: 0px 12px 32px 16px rgba(34, 60, 80, 0.05);
-  box-shadow: 0px 12px 32px 16px rgba(34, 60, 80, 0.05);
+  -webkit-box-shadow: 0 1.2rem 3.2rem 1.6rem rgba(34, 60, 80, 0.05);
+  -moz-box-shadow: 0 1.2rem 3.2rem 1.6rem rgba(34, 60, 80, 0.05);
+  box-shadow: 0 1.2rem 3.2rem 1.6rem rgba(34, 60, 80, 0.05);
   background-color: rgba(34, 60, 80, 0.05);
-  padding-top: 20px;
+  padding-top: 2rem;
 }
 
 header {
-  padding: 0 20px;
+  padding: 0 2rem;
   background-color: rgba(34, 60, 80, 0.05);
-  border-bottom: rgba(34, 60, 80, 0.05) 1px solid;
+  border-bottom: rgba(34, 60, 80, 0.05) .1rem solid;
   justify-content: center;
   display: flex;
 }
 
 .currency-list {
-  margin: 20px -5px 0 -5px;
-}
-
-.currency-list:after {
-  content: "";
-  display: table;
-  clear: both;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 760px) {
   .container {
-    padding: 30px 15px;
+    padding: 3rem 1.5rem;
   }
 }
 
 @media screen and (min-width: 1366px) {
   .container {
-    padding: 30px 10%;
+    padding: 3rem 10%;
   }
 }
 
