@@ -2,7 +2,7 @@
   <header>
     <h1>Currency monitor</h1>
   </header>
-  <div class="add-block">
+  <div class="container add-block">
     <AddCurrency :currencies="prices" @add-currency="add" :warning="warning" @clear-warning="clearWarning"/>
   </div>
   <div class="container">
@@ -60,6 +60,7 @@ export default {
     },
     deleteItem(item) {
       this.items = this.items.filter(i => i !== item)
+      localStorage.setItem('currencies', JSON.stringify(this.items))
     },
     clearWarning() {
       this.warning = false
@@ -92,7 +93,7 @@ header {
 }
 
 .currency-list {
-  margin: 50px -5px 0 -5px;
+  margin: 20px -5px 0 -5px;
 }
 
 .currency-list:after {
@@ -103,13 +104,13 @@ header {
 
 @media screen and (max-width: 760px) {
   .container {
-    padding: 15px;
+    padding: 30px 15px;
   }
 }
 
 @media screen and (min-width: 1366px) {
   .container {
-    padding: 0 10%;
+    padding: 30px 10%;
   }
 }
 

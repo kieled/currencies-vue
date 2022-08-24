@@ -71,7 +71,7 @@ export default {
   background-color: rgba(34, 60, 80, 0.6);
   border: none;
 }
-@media screen and (max-width: 726px) {
+@media screen and (max-width: 760px) {
   .form {
     width: 95%;
   }
